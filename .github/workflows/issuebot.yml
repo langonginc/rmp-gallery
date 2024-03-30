@@ -98,6 +98,9 @@ jobs:
     needs: updateGallery
     if: ${{ failure() && needs.updateGallery.outputs.sanityCheck != 'pass' }}
     steps:
+      - name: Output ${{ needs.updateGallery.outputs.sanityCheck }}
+        run: echo ${{ needs.updateGallery.outputs.sanityCheck }}
+        
       - name: Comment if failed
         uses: peter-evans/create-or-update-comment@v4
         with:
